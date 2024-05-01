@@ -19,6 +19,8 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
     setAnchorEl(null)
   }
 
+  console.log(Children.toArray(children))
+
   return (<>
     <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
       <ListItem disablePadding>
@@ -37,7 +39,7 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
       </IconButton>
     </ListItem>
 
-    <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
+    {/* <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
       {Children.toArray(children).map(child => {
         if (child.type.name === "AvatarMenuItem") {
           return isValidElement(child) ?  cloneElement(child, {
@@ -54,7 +56,7 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
           isOpen: modalInfo["isOpen"] && modalInfo["name"] === child.props.name
         }) : child 
       }
-    })}
+    })} */}
   </>)
 }
 
