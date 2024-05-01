@@ -32,8 +32,6 @@ export const MainView = ({ navigate, children}) => {
     }
   }
 
-  console.log(children[2])
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
       <Box sx={{ width: { xs: drawerWidth["xs"], lg: drawerWidth["lg"] }}} >
