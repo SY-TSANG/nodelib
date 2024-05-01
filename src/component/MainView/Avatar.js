@@ -41,7 +41,7 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
 
     <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
       {Children.toArray(children).map(child => {
-        if (child.type.name === "AvatarMenuItem") {
+        if (child.type.name === "AvatarMenu") {
           return isValidElement(child) ?  cloneElement(child, {
             toggleMenu: toggleMenu,
           }) : child 
