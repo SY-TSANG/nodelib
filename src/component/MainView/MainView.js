@@ -63,20 +63,14 @@ export const MainView = ({ children}) => {
           <Box sx={{ display: 'block' }} >
             <Box sx={{ display: 'flex', flexDirection: 'column'}} style={{"height": "100vh"}}>
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
-                <Box>
-                  {children[0]}
-                  
+                <Box>                  
                   <List>
-                  {
-                    cloneElement(children[1], { open: true })
-                  }
+                    { cloneElement(children[1], { open: true }) }
                   </List>
                 </Box>
 
                 <Box>
-                  {
-                    cloneElement(children[2], { open: true })
-                  }
+                  { cloneElement(children[2], { open: true })}
                 </Box>
               </Stack>
             </Box>
