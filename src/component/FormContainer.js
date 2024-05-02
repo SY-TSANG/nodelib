@@ -1,4 +1,4 @@
-import React, { useState, useRef, Children, isValidElement, cloneElement, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useRef, Children, cloneElement, forwardRef, useImperativeHandle } from "react";
 import { Form } from "react-bootstrap";
 
 import { DropdownComponent, MultiDropdownComponent } from "./Dropdown";

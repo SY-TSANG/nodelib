@@ -1,6 +1,5 @@
-import React, { useState, Children, isValidElement, cloneElement } from "react";
-import { Box, Drawer, Stack, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { FaAngleDoubleRight } from "react-icons/fa";
+import React, { Children, cloneElement } from "react";
+import { IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 const RouteTabLg = ({ icon, label, onClick }) => {
   return (

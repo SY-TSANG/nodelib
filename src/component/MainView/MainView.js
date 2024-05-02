@@ -1,5 +1,5 @@
-import React, { useState, Children, isValidElement, cloneElement } from "react";
-import { Box, Drawer, Stack, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import React, { useState, cloneElement } from "react";
+import { Box, Drawer, Stack, List, ListItem } from '@mui/material';
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 import { UserAvatar, AvatarMenu, AvatarModal } from './UserAvatar'
@@ -11,7 +11,7 @@ const drawerWidth = {
   "lg": 260
 }
 
-export const MainView = ({ children}) => {
+export const MainView = ({ children }) => {
   const windowSize = useWindowSize()
 
   const [mobileOpen, setMobileOpen] = useState(false);
