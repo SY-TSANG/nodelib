@@ -22,6 +22,7 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
   Children.toArray(children).forEach(child => {
     console.log(child)
     console.log(child.type)
+    console.log(child.props)
   });
 
   console.log()
