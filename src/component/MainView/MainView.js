@@ -2,7 +2,7 @@ import React, { useState, Children, isValidElement, cloneElement } from "react";
 import { Box, Drawer, Stack, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { FaAngleDoubleRight } from "react-icons/fa";
 
-import { AvatarComponent, AvatarMenu, AvatarModal } from './Avatar'
+import { UserAvatar, AvatarMenu, AvatarModal } from './UserAvatar'
 import { RouteTab } from './Routes'
 import { useWindowSize } from '../../useHook/useWindowSize';
 
@@ -110,7 +110,7 @@ MainView.Header = Header
 MainView.Footer = Footer
 MainView.Body = Body
 
-MainView.AvatarComponent = AvatarComponent
+MainView.UserAvatar = UserAvatar
 MainView.AvatarMenu = AvatarMenu
 MainView.AvatarModal = AvatarModal
 

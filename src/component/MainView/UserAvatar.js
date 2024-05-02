@@ -1,9 +1,9 @@
 import React, { useState,Children, isValidElement, cloneElement } from 'react'
 import { Box, ListItem, ListItemButton, ListItemText, ListItemAvatar, Avatar, IconButton, Menu } from '@mui/material'
 
-import { ModalComponent } from '../../component/Modal';
+import { ModalComponent } from '../Modal';
 
-export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children }) => {
+export const UserAvatar = ({ picture, namePrimary, nameSecondary, children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalInfo, setModalInfo] = useState({
     "isOpen": false,
@@ -47,7 +47,6 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
 
     <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
       {Children.toArray(children).map(child => {
-        console.log(child.type.displayName)
         if (child.type.displayName === "AvatarMenu") {
           return isValidElement(child) ?  cloneElement(child, {
             toggleMenu: toggleMenu,
@@ -81,8 +80,6 @@ export const AvatarMenu = ({ name, text, callback, toggleMenu }) => {
     </ListItem>
   </>)
 }
-
-AvatarMenu.displayName = "AvatarMenu"
 
 export const AvatarModal = ({ name, modalConfig, isOpen, toggleMenu, children }) => {
   return (

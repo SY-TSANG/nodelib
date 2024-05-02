@@ -34,11 +34,11 @@ export const RouteTab = ({ icon, text, path, navigate, open, handleDrawerClose }
       </ListItem>
     ) : (<>
       <ListItem disablePadding sx={{ display: { xs: 'none', lg: 'block' } }}>
-        <RouteTabXs icon={icon} label={text} path={path} onClick={onClick} />
+        <RouteTabLg icon={icon} label={text} path={path} onClick={onClick} />
       </ListItem>
 
       <ListItem disablePadding sx={{ display: { lg: 'none' } }}>
-        <RouteTabLg icon={icon} path={path} onClick={onClick} />
+        <RouteTabXs icon={icon} path={path} onClick={onClick} />
       </ListItem>
     </>)}
   </>)
