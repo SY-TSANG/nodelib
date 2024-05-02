@@ -3,7 +3,7 @@ import { Box, Drawer, Stack, IconButton, List, ListItem, ListItemButton, ListIte
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 import { UserAvatar, AvatarMenu, AvatarModal } from './UserAvatar'
-import { RouteTab } from './Routes'
+import { RouteTab, Routes } from './Routes'
 import { useWindowSize } from '../../useHook/useWindowSize';
 
 const drawerWidth = {
