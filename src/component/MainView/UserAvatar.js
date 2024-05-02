@@ -65,7 +65,7 @@ export const UserAvatar = ({ open, picture, namePrimary, nameSecondary, children
 
     {Children.toArray(children).map(child => {
       if (child.type.displayName === "AvatarModal") {
-        cloneElement(child, {
+        return cloneElement(child, {
           toggleMenu: toggleMenu,
           isOpen: modalInfo["isOpen"] && modalInfo["name"] === child.props.name
         })
