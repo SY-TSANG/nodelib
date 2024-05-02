@@ -67,7 +67,9 @@ export const MainView = ({ children}) => {
                   {children[0]}
                   
                   <List>
-                    {children[1]}
+                  {
+                    cloneElement(children[1], { open: true })
+                  }
                   </List>
                 </Box>
 
