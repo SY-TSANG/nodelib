@@ -84,11 +84,11 @@ export const MainView = ({ navigate, children}) => {
                   </List>
                 </Box>
 
-                <Box>
+                {/* <Box>
                   {
                     cloneElement(child, { open: true })
                   }
-                </Box>
+                </Box> */}
               </Stack>
             </Box>
           </Box>
