@@ -50,9 +50,7 @@ export const MainView = ({ navigate, children}) => {
                       return isValidElement(child) ?  cloneElement(child, { navigate: navigate }) : child
                     })} */}
 
-                    {children[1].map(child => {
-                      return isValidElement(child) ?  cloneElement(child, { navigate: navigate }) : child
-                    })}
+                    {children[1]}
                   </List>
                 </Box>
                 
@@ -78,9 +76,7 @@ export const MainView = ({ navigate, children}) => {
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
                 <Box>
                   <List>
-                    {children[1].map(child => {
-                      return isValidElement(child) ?  cloneElement(child, { navigate: navigate, open: true, handleDrawerClose: handleDrawerClose }) : child
-                    })}
+                    {children[1]}
                   </List>
                 </Box>
 
