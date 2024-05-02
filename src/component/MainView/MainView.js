@@ -111,5 +111,11 @@ MainView.Footer = Footer
 MainView.Body = Body
 
 MainView.AvatarComponent = AvatarComponent
+MainView.AvatarComponent.name = "AvatarComponent"
+
+
 MainView.AvatarMenu = AvatarMenu
+MainView.AvatarMenu.name = "AvatarMenu"
+
 MainView.AvatarModal = AvatarModal
+MainView.AvatarModal.name = "AvatarModal"
