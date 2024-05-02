@@ -56,7 +56,7 @@ export const FormContainer = forwardRef(({ state, children }, ref) => {
 
   return (<>
     {Children.map(children, child => {
-      return isValidElement(child) ?  cloneElement(child, { value: formState[child.props.name], onChange: onChange }) : child
+      return cloneElement(child, { value: formState[child.props.name], onChange: onChange })
     })}
   </>)
 })

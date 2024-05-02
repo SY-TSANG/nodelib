@@ -11,7 +11,7 @@ const drawerWidth = {
   "lg": 260
 }
 
-export const MainView = ({ navigate, children}) => {
+export const MainView = ({ children}) => {
   const windowSize = useWindowSize()
 
   const [mobileOpen, setMobileOpen] = useState(false);

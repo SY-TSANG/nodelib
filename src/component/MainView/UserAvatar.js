@@ -56,19 +56,19 @@ export const UserAvatar = ({ open, picture, namePrimary, nameSecondary, children
     <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
       {Children.toArray(children).map(child => {
         if (child.type.displayName === "AvatarMenu") {
-          return isValidElement(child) ?  cloneElement(child, {
+          return cloneElement(child, {
             toggleMenu: toggleMenu,
-          }) : child 
+          })
         }
       })}
     </Menu>
 
     {Children.toArray(children).map(child => {
       if (child.type.displayName === "AvatarModal") {
-        return isValidElement(child) ?  cloneElement(child, {
+        cloneElement(child, {
           toggleMenu: toggleMenu,
           isOpen: modalInfo["isOpen"] && modalInfo["name"] === child.props.name
-        }) : child 
+        })
       }
     })}
   </>)
