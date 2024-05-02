@@ -47,8 +47,8 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
 
     <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
       {Children.toArray(children).map(child => {
-        console.log(child.type.name)
-        if (child.type.name === "AvatarMenu") {
+        console.log(child.type.displayName)
+        if (child.type.displayName === "AvatarMenu") {
           return isValidElement(child) ?  cloneElement(child, {
             toggleMenu: toggleMenu,
           }) : child 
@@ -57,7 +57,7 @@ export const AvatarComponent = ({ picture, namePrimary, nameSecondary, children 
     </Menu>
 
     {Children.toArray(children).map(child => {
-      if (child.type.name === "AvatarModal") {
+      if (child.type.displayName === "AvatarModal") {
         return isValidElement(child) ?  cloneElement(child, {
           toggleMenu: toggleMenu,
           isOpen: modalInfo["isOpen"] && modalInfo["name"] === child.props.name
@@ -81,6 +81,8 @@ export const AvatarMenu = ({ name, text, callback, toggleMenu }) => {
     </ListItem>
   </>)
 }
+
+AvatarMenu.displayName = "AvatarMenu"
 
 export const AvatarModal = ({ name, modalConfig, isOpen, toggleMenu, children }) => {
   return (
