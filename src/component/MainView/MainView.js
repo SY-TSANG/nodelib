@@ -40,25 +40,14 @@ export const MainView = ({ navigate, children}) => {
             <Box sx={{ display: 'flex', flexDirection: 'column'}} style={{"height": "100vh"}}>
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
                 <Box>
-                    {/* {Children.toArray(children).filter((child) => child.type.name === "ViewHeader").map(child => {
-                      return child
-                    })} */}
+                  {children[0]}
 
-                    {children[0]}
                   <List>
-                    {/* {Children.toArray(children).filter((child) => child.type.name === "ViewRoutes").map(child => {
-                      return isValidElement(child) ?  cloneElement(child, { navigate: navigate }) : child
-                    })} */}
-
                     {children[1]}
                   </List>
                 </Box>
                 
                 <Box>
-                  {/* {Children.toArray(children).filter((child) => child.type.name === "ViewFooter").map(child => {
-                    return child
-                  })} */}
-
                   {children[2]} 
 
                   <ListItem disablePadding sx={{ display: { lg: 'none' } }}>
@@ -75,6 +64,8 @@ export const MainView = ({ navigate, children}) => {
             <Box sx={{ display: 'flex', flexDirection: 'column'}} style={{"height": "100vh"}}>
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
                 <Box>
+                  {children[0]}
+                  
                   <List>
                     {children[1]}
                   </List>
@@ -92,10 +83,6 @@ export const MainView = ({ navigate, children}) => {
       </Box>
 
       <Box component="main" sx={{ width: { xs: windowSize["width"]-drawerWidth["xs"], lg: windowSize["width"]-drawerWidth["lg"] }, height: "100vh", p:2 }} > 
-        {/* {Children.toArray(children).filter((child) => child.type.name === "ViewBody").map(child => {
-          return child
-        })} */}
-
         {children[3]} 
       </Box>
     </Box>
