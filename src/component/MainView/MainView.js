@@ -113,3 +113,5 @@ MainView.Body = Body
 MainView.AvatarComponent = AvatarComponent
 MainView.AvatarMenu = AvatarMenu
 MainView.AvatarModal = AvatarModal
+
+MainView.AvatarMenu.displayName = "AvatarMenu"
