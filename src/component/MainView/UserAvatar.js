@@ -3,7 +3,26 @@ import { Box, ListItem, ListItemButton, ListItemText, ListItemAvatar, Avatar, Ic
 
 import { ModalComponent } from '../Modal';
 
-export const UserAvatar = ({ picture, namePrimary, nameSecondary, children }) => {
+const UserAvatarXs = ({ picture, setAnchorEl }) => {
+  return (
+    <IconButton style={{"marginLeft": "auto", "marginRight": "auto"}} onClick={(event) => setAnchorEl(event.currentTarget)}>
+      <Avatar src={picture}  style={{"marginLeft": "auto", "marginRight": "auto"}}/>
+    </IconButton>
+  )
+}
+
+const UserAvatarLg = ({ picture, namePrimary, nameSecondary, setAnchorEl }) => {
+  return (
+    <ListItemButton onClick={(event) => setAnchorEl(event.currentTarget)}>
+      <ListItemAvatar>
+        <Avatar src={picture} />
+      </ListItemAvatar>
+      <ListItemText primary={namePrimary} secondary={nameSecondary}/>
+    </ListItemButton>
+  )
+}
+
+export const UserAvatar = ({ open, picture, namePrimary, nameSecondary, children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalInfo, setModalInfo] = useState({
     "isOpen": false,
@@ -19,32 +38,21 @@ export const UserAvatar = ({ picture, namePrimary, nameSecondary, children }) =>
     setAnchorEl(null)
   }
 
-  Children.toArray(children).forEach(child => {
-    console.log(child)
-    console.log(child.type.displayName)
-    console.log(child.props)
-  });
-
-  console.log()
-
   return (<>
-    <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
-      <ListItem disablePadding>
-        <ListItemButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-          <ListItemAvatar>
-            <Avatar src={picture} />
-          </ListItemAvatar>
-          <ListItemText primary={namePrimary} secondary={nameSecondary}/>
-        </ListItemButton>
+    {(open === true) ? (
+      <UserAvatarLg picture={picture} namePrimary={namePrimary} nameSecondary={nameSecondary} setAnchorEl={setAnchorEl} />
+    ) : (<>
+      <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+        <ListItem disablePadding>
+          <UserAvatarLg picture={picture} namePrimary={namePrimary} nameSecondary={nameSecondary} setAnchorEl={setAnchorEl} />
+        </ListItem>
+      </Box>
+
+      <ListItem disablePadding sx={{ display: { lg: 'none' } }}>
+        <UserAvatarXs picture={picture} setAnchorEl={setAnchorEl} />
       </ListItem>
-    </Box>
-
-    <ListItem disablePadding sx={{ display: { lg: 'none' } }}>
-      <IconButton style={{"marginLeft": "auto", "marginRight": "auto"}} onClick={(event) => setAnchorEl(event.currentTarget)}>
-        <Avatar src={picture}  style={{"marginLeft": "auto", "marginRight": "auto"}}/>
-      </IconButton>
-    </ListItem>
-
+    </>)}
+    
     <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} transformOrigin={{ vertical: 'bottom', horizontal: 'left' }} >
       {Children.toArray(children).map(child => {
         if (child.type.displayName === "AvatarMenu") {
