@@ -43,3 +43,11 @@ export const RouteTab = ({ icon, text, path, navigate, open, handleDrawerClose }
     </>)}
   </>)
 }
+
+export const Routes = ({ children }) => {
+  return (<>
+    {Children.toArray(children).map(child => {
+      return cloneElement(child)
+    })}
+  </>)
+}

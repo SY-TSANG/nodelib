@@ -106,14 +106,12 @@ export const MainView = ({ navigate, children}) => {
   )
 }
 
-const Routes = ({ icon, text, path, navigate, open, handleDrawerClose, children }) => <RouteTab icon={icon} text={text} path={path} navigate={navigate} open={open} handleDrawerClose={handleDrawerClose}/>
 const Header = ({ children }) => <>{children}</>
-const Footer = ({ children }) => <>{children}</>
 const Body = ({ children }) => <>{children}</>
 
-MainView.Route = Routes
+MainView.Routes = Routes
+MainView.Route = RouteTab
 MainView.Header = Header
-MainView.Footer = Footer
 MainView.Body = Body
 
 MainView.UserAvatar = UserAvatar
