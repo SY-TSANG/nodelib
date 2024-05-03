@@ -11,7 +11,7 @@ const drawerWidth = {
   "lg": 260
 }
 
-export const MainView = ({ children }) => {
+export const MainView = ({ image, name, children }) => {
   const windowSize = useWindowSize()
 
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -39,16 +39,21 @@ export const MainView = ({ children }) => {
           <Box sx={{ display: 'block' }} >
             <Box sx={{ display: 'flex', flexDirection: 'column'}} style={{"height": "100vh"}}>
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
-                <Box>
-                  {children[0]}
+                <Box sx={{ display: { xs: 'none', lg: 'block'}, p:1 }}>
+                    {image && 
+                      <img src={image} style={{"width": "100%", "aspectRatio": "3/1"}} />
+                    }
 
+                    {name &&
+                      <div>{name}</div>
+                    }
                   <List>
-                    {children[1]}
+                    {children[0]}
                   </List>
                 </Box>
                 
                 <Box>
-                  {children[2]} 
+                  {children[1]} 
 
                   <ListItem disablePadding sx={{ display: { lg: 'none' } }}>
                     <FaAngleDoubleRight style={{"marginLeft": "auto", "marginRight": "auto", "marginTop": "15px", "marginBottom": "15px"}} onClick={() => handleDrawerToggle()} />
