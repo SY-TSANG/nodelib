@@ -11,6 +11,20 @@ const drawerWidth = {
   "lg": 260
 }
 
+const Header = ({ image, name }) => {
+  return (
+    <Box>
+      {image && 
+        <img src={image} style={{"width": "100%", "aspectRatio": "3/1"}} />
+      }
+
+      {name &&
+        <div>{name}</div>
+      }
+    </Box>
+  )
+}
+
 export const MainView = ({ image, name, children }) => {
   const windowSize = useWindowSize()
 
@@ -39,14 +53,11 @@ export const MainView = ({ image, name, children }) => {
           <Box sx={{ display: 'block' }} >
             <Box sx={{ display: 'flex', flexDirection: 'column'}} style={{"height": "100vh"}}>
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
-                <Box sx={{ display: { xs: 'none', lg: 'block'}, p:1 }}>
-                    {image && 
-                      <img src={image} style={{"width": "100%", "aspectRatio": "3/1"}} />
-                    }
+                <Box>
+                  <Box sx={{ display: { xs: 'none', lg: 'block'}, p:1 }}>
+                    <Header image={image} name={name}/>
+                  </Box>
 
-                    {name &&
-                      <div>{name}</div>
-                    }
                   <List>
                     {children[0]}
                   </List>
@@ -68,14 +79,18 @@ export const MainView = ({ image, name, children }) => {
           <Box sx={{ display: 'block' }} >
             <Box sx={{ display: 'flex', flexDirection: 'column'}} style={{"height": "100vh"}}>
               <Stack justifyContent="space-between" direction="column" spacing={2} style={{"height": "100%"}}>
-                <Box>                  
+                <Box>     
+                  <Box>
+                    <Header image={image} name={name}/>
+                  </Box>  
+                             
                   <List>
-                    { cloneElement(children[1], { open: true }) }
+                    { cloneElement(children[0], { open: true }) }
                   </List>
                 </Box>
 
                 <Box>
-                  { cloneElement(children[2], { open: true })}
+                  { cloneElement(children[1], { open: true })}
                 </Box>
               </Stack>
             </Box>
@@ -84,23 +99,18 @@ export const MainView = ({ image, name, children }) => {
       </Box>
 
       <Box component="main" sx={{ width: { xs: windowSize["width"]-drawerWidth["xs"], lg: windowSize["width"]-drawerWidth["lg"] }, height: "100vh", p:2 }} > 
-        {children[3]} 
+        {children[2]} 
       </Box>
     </Box>
   )
 }
 
-const Header = ({ children }) => <>{children}</>
-const Body = ({ children }) => <>{children}</>
-
 MainView.Routes = Routes
 MainView.Route = RouteTab
-MainView.Header = Header
-MainView.Body = Body
-
 MainView.UserAvatar = UserAvatar
 MainView.AvatarMenu = AvatarMenu
 MainView.AvatarModal = AvatarModal
-
 MainView.AvatarMenu.displayName = "AvatarMenu"
 MainView.AvatarModal.displayName = "AvatarModal"
+
+MainView.Body = ({ children }) => <>{children}</>
