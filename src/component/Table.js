@@ -21,7 +21,7 @@ export const TableComponent = forwardRef(({ columns, data, actionCount, count, i
   const tableStateRef = useRef({
     "order": true,
     "orderBy": "",
-    "offset": 1
+    "offset": 0
   })
 
   const [tableState, setTableState] = useState(tableStateRef.current)
