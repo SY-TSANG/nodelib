@@ -17,7 +17,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export const TableComponent = forwardRef(({ columns, data, actionCount, count, itemsPerPage, callback, navigate }, ref) => {
+export const TableComponent = forwardRef(({ columns, data, actionCount, count, callback, navigate }, ref) => {
   const tableStateRef = useRef({
     "order": true,
     "orderBy": "",
@@ -58,7 +58,7 @@ export const TableComponent = forwardRef(({ columns, data, actionCount, count, i
 	}
 
   const handlePageChange = (_, newPage) =>{
-		tableStateRef.current.page = (newPage-1)*itemsPerPage
+		tableStateRef.current.page = newPage
 		setTableState(tableStateRef.current)
 		
 		callback()
@@ -105,40 +105,40 @@ export const TableComponent = forwardRef(({ columns, data, actionCount, count, i
 						<TableBody>
 							{data.map((row, i) => (
 								<>	
-								<TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-									{Object.entries(columns).map((j) =>
-									<StyledTableCell align="center" key={j[0]} >{(row[j[0]] != "" && row[j[0]] != null) ? row[j[0]] : "-"}</StyledTableCell>
-									)}
+                  <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    {Object.entries(columns).map((j) =>
+                    <StyledTableCell align="center" key={j[0]} >{(row[j[0]] != "" && row[j[0]] != null) ? row[j[0]] : "-"}</StyledTableCell>
+                    )}
 
-									{actionCount &&
-									<StyledTableCell align="center" sx={{width : `${actionCount*50}px`}} key="actionBtn">
-										<Stack justifyContent="center"  direction="row" spacing={0} >
-										{row["actions"].map((action) => 
-											<IconButtonComponent title={action.text} onClick={() => action.onClick(row["id"])}>
-											{action.icon}
-											</IconButtonComponent>
-										)}
-										</Stack>
-									</StyledTableCell>
-									}
+                    {actionCount &&
+                    <StyledTableCell align="center" sx={{width : `${actionCount*50}px`}} key="actionBtn">
+                      <Stack justifyContent="center"  direction="row" spacing={0} >
+                      {row["actions"].map((action) => 
+                        <IconButtonComponent title={action.text} onClick={() => action.onClick(row["id"])}>
+                        {action.icon}
+                        </IconButtonComponent>
+                      )}
+                      </Stack>
+                    </StyledTableCell>
+                    }
 
-									{navigate && 
-									<StyledTableCell align="center" sx={{width : "50px"}} key="navigationBtn">
-										<IconButtonComponent onClick={() => navigate(row["id"])} title="">
-										<FaAngleRight size={20} />
-										</IconButtonComponent>
-									</StyledTableCell>
-									}
-								</TableRow>
+                    {navigate && 
+                    <StyledTableCell align="center" sx={{width : "50px"}} key="navigationBtn">
+                      <IconButtonComponent onClick={() => navigate(row["id"])} title="">
+                      <FaAngleRight size={20} />
+                      </IconButtonComponent>
+                    </StyledTableCell>
+                    }
+                  </TableRow>
 								</>
-              				))}
+              ))}
 						</TableBody>
 					</Table>
 				</TableContainer>
 			)}
 			
 			{(count != null && count > 0) && 
-				<Pagination page={tableState["page"]} boundaryCount={2} onChange={handlePageChange}/>
+				<Pagination className='pagination' page={tableState["page"]} count={count} boundaryCount={2} onChange={handlePageChange}/>
 			}
 		</ >
   )
