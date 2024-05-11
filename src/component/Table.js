@@ -17,12 +17,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export const TableComponent = forwardRef(({ columns, data, actionCount, count, callback, navigate }, ref) => {
+export const TableComponent = forwardRef(({ columns, data, actionCount, count, itemsPerPage, callback, navigate }, ref) => {
   const tableStateRef = useRef({
     "order": true,
     "orderBy": "",
     "page": 0
   })
+
 
 	const [tableState, setTableState] = useState(tableStateRef.current)
 	const [loading, setLoading] = useState(false)
@@ -57,7 +58,7 @@ export const TableComponent = forwardRef(({ columns, data, actionCount, count, c
 	}
 
   const handlePageChange = (_, newPage) =>{
-		tableStateRef.current.page = newPage
+		tableStateRef.current.page = (newPage-1)*itemsPerPage
 		setTableState(tableStateRef.current)
 		
 		callback()
