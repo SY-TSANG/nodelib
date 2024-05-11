@@ -10,7 +10,6 @@ export { TableComponent } from './component/Table';
 export { DropdownComponent, MultiDropdownComponent } from './component/Dropdown'
 export { FormContainer , FormText, FormDropdown, FormDatepicker } from './component/FormContainer'
 export { MainView } from './component/MainView/MainView'
-export { SnackbarComponent } from './component/SnackbarComponent'
 export { LoadingScreen } from './component/LoadingScreen'
 
 export { useWindowSize } from './useHook/useWindowSize';
