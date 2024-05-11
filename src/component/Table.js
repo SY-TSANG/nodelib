@@ -35,8 +35,8 @@ export const TableComponent = forwardRef(({ columns, data, actionCount, count, c
 			setLoadingScreen: (value) => {
 			setLoading(value)
 		},
-		setPage: () => {
-			tableStateRef.current.page = 0
+		setPage: (page) => {
+			tableStateRef.current.page = page
       setTableState(tableStateRef.current)
 		}
 	}
