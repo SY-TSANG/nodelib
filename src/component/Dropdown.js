@@ -5,7 +5,7 @@ import { FaChevronDown, FaTimes } from "react-icons/fa";
 const CustomToggle = React.forwardRef(({ children, onClick, label, clear, required, disabled, clearCallback }, ref) => {
   return (<>
     {disabled ? (
-      <Form.Control value={value} />
+      <Form.Control value={label} />
     ): (
       <InputGroup ref={ref}>
         <Form.Control className="border-end-0" value={label} type="text" disabled={disabled} required={required}  onClick={(e) => { e.preventDefault(); onClick(e); }}/>
