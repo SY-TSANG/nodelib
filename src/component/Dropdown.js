@@ -60,7 +60,7 @@ export const DropdownComponent = ({ value, items, onChange, search, placeholder,
   )
 }
 
-export const MultiDropdownComponent = ({ value, items, onChange, search, placeholder, disabled, required, clear }) => {
+export const MultiDropdownComponent = ({ value, items, onChange, search, placeholder, disabled, required, clear }) => {  
   const onSelect = (target) => {
     const item = items.filter((item) => item[0] === target)[0]
     const exist = value != null && value.includes(target)
@@ -73,7 +73,7 @@ export const MultiDropdownComponent = ({ value, items, onChange, search, placeho
 
   return (
     <Dropdown autoClose="outside" onSelect={onSelect} >
-      <Dropdown.Toggle as={CustomToggle} label={(value.length > 0) ? items.filter((item) => value.includes(item[0])).map((item) => item[1]).join(", ") : ""} required={required} disabled={disabled} clear={clear} clearCallback={() => onChange(null)}/>
+      <Dropdown.Toggle as={CustomToggle} label={(value != null && value.length > 0) ? items.filter((item) => value.includes(item[0])).map((item) => item[1]).join(", ") : ""} required={required} disabled={disabled} clear={clear} clearCallback={() => onChange([])}/>
       <Dropdown.Menu as={CustomMenu} style={{"width": "100%", "maxHeight": "300px", "overflowY": "auto"}} search={search} placeholder={placeholder}>
         {(items ?? []).map((item) =>
           <Dropdown.Item style={{"backgroundColor": value.includes(item[0]) ? "DarkGray" : "white", "color": "black"}} eventKey={item[0]}>{item[1]}</Dropdown.Item>
