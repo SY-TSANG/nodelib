@@ -52,7 +52,7 @@ const getNowConfig = ([startTime, endTime])  => {
   return { id: 'now-track', source, target }
 }
 
-export const TimeRangePicker = ({
+const TimeRangePicker = ({
   containerClassName,
   onUpdateCallback,
   onChangeCallback,
@@ -66,7 +66,9 @@ export const TimeRangePicker = ({
   step,
   ticksNumber,
   error,
-  mode
+  mode,
+  min,
+  max
 }) => {
   const [selectedScale, setSelectedScale] = useState(0)
   const scale = [24, 12, 8, 4, 2]
@@ -102,7 +104,7 @@ export const TimeRangePicker = ({
 
     const new_start = moment.max(
       moment(curr_start).subtract(scale[selectedScale]/2, 'hours'),
-      moment(curr_start).startOf('day')
+      moment(min)
     )
 
     setTimelineInterval([addHour(moment(new_start), 0), addHour(moment(new_start), scale[selectedScale])])
@@ -113,7 +115,7 @@ export const TimeRangePicker = ({
 
     const new_end = moment.min(
       moment(curr_end).add(scale[selectedScale]/2, 'hours'),
-      moment(curr_end).endOf('day')
+      moment(max)
     )
 
     setTimelineInterval([addHour(new_end, (scale[selectedScale])*-1), addHour(moment(new_end), 0)])
@@ -315,3 +317,5 @@ TimeRangePicker.defaultProps = {
   error: false,
   mode: 3,
 }
+
+export default TimeRangePicker;
