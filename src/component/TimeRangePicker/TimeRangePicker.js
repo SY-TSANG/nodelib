@@ -47,8 +47,6 @@ const getNowConfig = ([startTime, endTime])  => {
   const source = getConfig(new Date())
   const target = getConfig(moment(new Date()).add(1, "minutes").toDate())
 
-  
-
   return { id: 'now-track', source, target }
 }
 
@@ -73,8 +71,8 @@ export const TimeRangePicker = ({
   const [selectedScale, setSelectedScale] = useState(0)
   const scale = [24, 12, 8, 4, 2]
 
-  const formattedDisabledIntervals = getFormattedBlockedIntervals(disabledIntervals, timelineInterval)
-  
+  const formattedDisabledIntervals = getFormattedBlockedIntervals(disabledIntervals.filter((i) => i.start < timelineInterval[1] && i.end > timelineInterval[0]).map((i) => ({"start": moment.max(moment(i.start), moment(timelineInterval[0])),"end": moment.min(moment(i.end), moment(timelineInterval[1]))})), timelineInterval)
+
   useEffect(() => {
     const isValuesNotValid = checkIsValid(selectedInterval)
 
@@ -116,7 +114,7 @@ export const TimeRangePicker = ({
     const new_end = moment.min(
       moment(curr_end).add(scale[selectedScale]/2, 'hours'),
       moment(max)
-    )
+    ).toDate()
 
     setTimelineInterval([addHour(new_end, (scale[selectedScale])*-1), addHour(moment(new_end), 0)])
   }
@@ -128,7 +126,18 @@ export const TimeRangePicker = ({
     const curr_end = timelineInterval[1]
     const center = (Math.abs(moment(curr_start).diff(curr_end)))/2+Math.min(moment(curr_start).valueOf(),moment(curr_end).valueOf())
     
-    setTimelineInterval([addHour(center, (newScale/2)*-1), addHour(center, newScale/2)])
+    const new_start = addHour(center, (newScale/2)*-1)
+    const new_end = addHour(center, newScale/2)
+
+    if (new_start < min) {
+      setTimelineInterval([addHour(min, 0), addHour(min, newScale)])
+    }
+    else if (new_end > max) {
+      setTimelineInterval([addHour(max, newScale*-1), addHour(max, 0)])
+    }
+    else {
+      setTimelineInterval([new_start, new_end])
+    }
   }
 
   const addHour = (value, diff) => {
@@ -140,7 +149,6 @@ export const TimeRangePicker = ({
   }
 
   const onChange = (newTime) => {
-    console.log(newTime)
     const formattedNewTime = newTime.map(t => new Date(t))
     onChangeCallback(formattedNewTime)
   }
