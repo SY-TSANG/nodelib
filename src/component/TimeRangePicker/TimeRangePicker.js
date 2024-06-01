@@ -52,7 +52,7 @@ const getNowConfig = ([startTime, endTime])  => {
   return { id: 'now-track', source, target }
 }
 
-const TimeRangePicker = ({
+export const TimeRangePicker = ({
   containerClassName,
   onUpdateCallback,
   onChangeCallback,
@@ -317,5 +317,3 @@ TimeRangePicker.defaultProps = {
   error: false,
   mode: 3,
 }
-
-export default TimeRangePicker;
